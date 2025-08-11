@@ -1,36 +1,109 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🎣 海釣りスポット案内 - 初心者向けWebアプリ
 
-## Getting Started
+初心者でも安心して海釣りを楽しめるよう、最適な釣りスポットと道具をご提案するWebアプリケーションです。
 
-First, run the development server:
+## 🌟 主な機能
 
+### 現在実装済み（MVP）
+- **釣りスポット検索**: エリア・魚種・時期で絞り込み検索
+- **初心者向け情報**: 安全で始めやすいスポットを厳選
+- **道具ガイド**: 釣りたい魚に応じた最適な竿・リール・仕掛けを提案
+- **安全・マナー情報**: ライフジャケットの着用や釣り場のルール
+- **季節の釣り情報**: 今の時期におすすめの魚種と釣り方
+
+### 今後実装予定
+- **地図統合**: Google Maps APIでスポット位置を表示
+- **天気・潮汐情報**: リアルタイムの釣行判断サポート
+- **釣果レポート**: ユーザー投稿型の釣果情報
+- **詳細なスポット情報**: 設備・アクセス・混雑状況
+- **道具購入ガイド**: 予算別のおすすめ道具セット
+
+## 🛠 技術スタック
+
+- **フロントエンド**: Next.js 15 + React + Tailwind CSS
+- **開発環境**: Node.js
+- **予定**: PostgreSQL（データベース）、Google Maps API
+
+## 🚀 開発環境のセットアップ
+
+1. **プロジェクトのクローン**:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone <repository-url>
+cd 釣り
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. **依存関係のインストール**:
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+3. **開発サーバーの起動**:
+```bash
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. **ブラウザでアクセス**: http://localhost:3000
 
-## Learn More
+## 📁 プロジェクト構成
 
-To learn more about Next.js, take a look at the following resources:
+```
+src/
+├── app/                 # Next.js App Routerページ
+│   ├── page.js         # メインページ（釣りスポット検索）
+│   └── layout.js       # 全体レイアウト
+├── data/               # 静的データファイル
+│   ├── fishData.js     # 魚種情報
+│   ├── spotsData.js    # 釣りスポット情報  
+│   └── tackleData.js   # 道具・仕掛け情報
+└── components/         # 再利用可能なReactコンポーネント（今後）
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🎯 対象エリア
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+関東近郊の海釣りスポットを中心に展開：
+- **東京湾**: お台場海浜公園など都心アクセス良好
+- **神奈川**: 横浜港、江の島周辺
+- **千葉**: 幕張海浜公園、銚子港周辺  
+- **静岡**: 相模湾エリア（予定）
 
-## Deploy on Vercel
+## 🐟 主要な対象魚種
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+初心者でも釣りやすい魚種を中心に：
+- **アジ**: サビキ釣りで数釣りが楽しめる
+- **サバ**: 引きが強く釣りごたえ抜群
+- **イワシ**: 群れで釣れる小型魚
+- **タイ**: 中級者向けの憧れの魚
+- **スズキ**: ルアー釣りでチャレンジ
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🔧 開発スクリプト
+
+```bash
+# 開発サーバー起動
+npm run dev
+
+# プロダクションビルド
+npm run build
+
+# プロダクションサーバー起動
+npm start
+
+# Linting
+npm run lint
+```
+
+## 🤝 貢献
+
+プルリクエストやIssueでのご意見・ご要望をお待ちしています！
+
+## 📝 ライセンス
+
+MIT License
+
+## 📞 お問い合わせ
+
+釣り初心者の方でも安心して楽しめるよう、継続的に改善を続けていきます。
+ご質問やご要望がございましたら、Issueでお知らせください。
+
+---
+
+**🎣 安全で楽しい海釣りライフを応援します！ 🌊**
