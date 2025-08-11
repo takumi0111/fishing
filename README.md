@@ -6,10 +6,11 @@
 
 ### 現在実装済み（MVP）
 - **釣りスポット検索**: エリア・魚種・時期で絞り込み検索
-- **初心者向け情報**: 安全で始めやすいスポットを厳選
-- **道具ガイド**: 釣りたい魚に応じた最適な竿・リール・仕掛けを提案
-- **安全・マナー情報**: ライフジャケットの着用や釣り場のルール
-- **季節の釣り情報**: 今の時期におすすめの魚種と釣り方
+- **AI powered recommendations**: Gemini APIによるスポット推薦
+- **魚種情報データベース**: 10種類の魚の詳細情報とフィルタリング
+- **安全ガイド**: 包括的な海釣り安全情報（タブ形式）
+- **個別スポット詳細**: チャット機能付きスポット詳細ページ
+- **レスポンシブデザイン**: モバイルファーストなTailwind CSS設計
 
 ### 今後実装予定
 - **地図統合**: Google Maps APIでスポット位置を表示
@@ -21,6 +22,7 @@
 ## 🛠 技術スタック
 
 - **フロントエンド**: Next.js 15 + React + Tailwind CSS
+- **AI/API**: Google Gemini API (gemini-1.5-flash)
 - **開発環境**: Node.js
 - **予定**: PostgreSQL（データベース）、Google Maps API
 
@@ -28,8 +30,8 @@
 
 1. **プロジェクトのクローン**:
 ```bash
-git clone <repository-url>
-cd 釣り
+git clone https://github.com/takumi0111/fishing.git
+cd fishing
 ```
 
 2. **依存関係のインストール**:
@@ -37,25 +39,40 @@ cd 釣り
 npm install
 ```
 
-3. **開発サーバーの起動**:
+3. **環境変数の設定**:
+```bash
+# .env.local ファイルを作成
+GOOGLE_GENERATIVE_AI_API_KEY=your_gemini_api_key
+```
+
+4. **開発サーバーの起動**:
 ```bash
 npm run dev
 ```
 
-4. **ブラウザでアクセス**: http://localhost:3000
+5. **ブラウザでアクセス**: http://localhost:3000
 
 ## 📁 プロジェクト構成
 
 ```
 src/
-├── app/                 # Next.js App Routerページ
-│   ├── page.js         # メインページ（釣りスポット検索）
-│   └── layout.js       # 全体レイアウト
-├── data/               # 静的データファイル
-│   ├── fishData.js     # 魚種情報
-│   ├── spotsData.js    # 釣りスポット情報  
-│   └── tackleData.js   # 道具・仕掛け情報
-└── components/         # 再利用可能なReactコンポーネント（今後）
+├── app/                    # Next.js App Routerページ
+│   ├── page.js            # メインページ（釣りスポット検索）
+│   ├── search/page.js     # 検索結果ページ
+│   ├── spot/page.js       # 個別スポット詳細ページ
+│   ├── fish-info/page.js  # 魚種情報ページ
+│   ├── safety-guide/page.js # 安全ガイドページ
+│   ├── api/               # APIルート
+│   │   ├── search/route.js      # スポット検索API
+│   │   ├── spot-detail/route.js # スポット詳細API
+│   │   └── spot-sources/route.js # ソース情報API
+│   └── layout.js          # 全体レイアウト
+├── data/                  # 静的データファイル
+│   ├── fishData.js       # 魚種情報
+│   ├── spotsData.js      # 釣りスポット情報  
+│   └── tackleData.js     # 道具・仕掛け情報
+└── lib/                  # ユーティリティ
+    └── gemini.js         # Gemini API統合
 ```
 
 ## 🎯 対象エリア
@@ -74,6 +91,11 @@ src/
 - **イワシ**: 群れで釣れる小型魚
 - **タイ**: 中級者向けの憧れの魚
 - **スズキ**: ルアー釣りでチャレンジ
+- **カサゴ**: 根魚釣りの入門に最適
+- **メバル**: 夜釣りの楽しさを味わえる
+- **ハゼ**: ファミリーフィッシングの定番
+- **キス**: 投げ釣りの基本
+- **カレイ**: 冬の釣りの代表格
 
 ## 🔧 開発スクリプト
 
