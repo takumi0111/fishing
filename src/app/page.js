@@ -246,6 +246,87 @@ export default function Home() {
             </Link>
           </div>
         </div>
+
+        {/* 初心者のための基本情報 */}
+        <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl p-8 mb-8 border border-blue-100">
+          <h2 className="text-2xl font-bold text-gray-800 text-center mb-8">
+            初心者のための基本情報
+          </h2>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {/* 今の季節におすすめ */}
+            <div className="bg-white rounded-xl p-6 shadow-md">
+              <h3 className="text-lg font-bold text-blue-800 mb-4 flex items-center">
+                <span className="text-2xl mr-3">🌊</span>
+                今の季節におすすめ
+              </h3>
+              <ul className="space-y-3">
+                <li className="flex items-start">
+                  <span className="text-blue-500 mr-3 mt-1">•</span>
+                  <div>
+                    <span className="font-semibold text-gray-800">アジ</span>
+                    <span className="text-gray-600 block text-sm">サビキ釣りで初心者でも簡単</span>
+                  </div>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-blue-500 mr-3 mt-1">•</span>
+                  <div>
+                    <span className="font-semibold text-gray-800">イワシ</span>
+                    <span className="text-gray-600 block text-sm">群れで釣れるので数釣りが楽しめる</span>
+                  </div>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-blue-500 mr-3 mt-1">•</span>
+                  <div>
+                    <span className="font-semibold text-gray-800">サバ</span>
+                    <span className="text-gray-600 block text-sm">引きが強く釣りごたえ抜群</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            {/* 基本の持ち物 */}
+            <div className="bg-white rounded-xl p-6 shadow-md">
+              <h3 className="text-lg font-bold text-green-800 mb-4 flex items-center">
+                <span className="text-2xl mr-3">🎒</span>
+                基本の持ち物
+              </h3>
+              <ul className="space-y-3">
+                <li className="flex items-start">
+                  <span className="text-green-500 mr-3 mt-1">•</span>
+                  <span className="text-gray-700">
+                    <span className="font-semibold text-red-600">ライフジャケット</span>
+                    <span className="text-gray-600 block text-sm">（安全のため必須）</span>
+                  </span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-green-500 mr-3 mt-1">•</span>
+                  <span className="text-gray-700">竿・リール・仕掛け</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-green-500 mr-3 mt-1">•</span>
+                  <span className="text-gray-700">クーラーボックス・氷</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-green-500 mr-3 mt-1">•</span>
+                  <span className="text-gray-700">タオル・帽子・日焼け止め</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* AI による情報提供 */}
+            <div className="bg-white rounded-xl p-6 shadow-md">
+              <h3 className="text-lg font-bold text-purple-800 mb-4 flex items-center">
+                <span className="text-2xl mr-3">🤖</span>
+                AI による情報提供
+              </h3>
+              <p className="text-gray-700 text-sm leading-relaxed">
+                検索結果はGemini AIが各種釣り情報サイト、自治体の観光情報、釣り場ガイドなどを参考に生成します。
+                情報源と最終更新年も併せて表示し、透明性を確保しています。
+              </p>
+            </div>
+          </div>
+        </div>
       </main>
     </div>
   );
