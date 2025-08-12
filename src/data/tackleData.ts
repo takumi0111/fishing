@@ -1,5 +1,59 @@
+// 釣り道具・仕掛け情報の型定義
+export interface TackleComponent {
+  name: string;
+  specs: string;
+  description: string;
+}
+
+export interface TackleSet {
+  id: string;
+  name: string;
+  difficulty: 'beginner' | 'intermediate' | 'advanced';
+  targetFish: string[];
+  price: string;
+  components: {
+    rod: TackleComponent;
+    reel: TackleComponent;
+    line: TackleComponent;
+    rig: TackleComponent;
+  };
+  additionalItems: string[];
+  pros: string[];
+  tips: string[];
+}
+
+export interface BaitInfo {
+  id: string;
+  name: string;
+  targetFish: string[];
+  season: 'all' | 'spring' | 'summer' | 'autumn' | 'winter';
+  form: string;
+  price: string;
+  usage: string;
+  tips: string[];
+}
+
+export interface SafetyEquipment {
+  name: string;
+  importance: 'essential' | 'recommended' | 'conditional';
+  description: string;
+  price: string;
+}
+
+export interface BudgetRecommendation {
+  budget: string;
+  description: string;
+  items: string[];
+}
+
+export interface TackleGuide {
+  beginnerSets: TackleSet[];
+  baitGuide: BaitInfo[];
+  safetyEquipment: SafetyEquipment[];
+}
+
 // 釣り道具・仕掛け情報
-export const tackleGuide = {
+export const tackleGuide: TackleGuide = {
   beginnerSets: [
     {
       id: 'sabiki-set',
@@ -92,6 +146,98 @@ export const tackleGuide = {
         '潮の流れに合わせて仕掛けを調整',
         'エサ取りに負けない工夫が必要'
       ]
+    },
+    {
+      id: 'nage-tsuri-set',
+      name: '投げ釣りセット',
+      difficulty: 'intermediate',
+      targetFish: ['kisu', 'kasago'],
+      price: '10,000-18,000円',
+      components: {
+        rod: {
+          name: '投げ竿',
+          specs: '3.6m-4.2m',
+          description: '遠投に適した硬めの竿'
+        },
+        reel: {
+          name: 'スピニングリール',
+          specs: '4000番',
+          description: 'ライン容量が大きく遠投向き'
+        },
+        line: {
+          name: 'ナイロンライン',
+          specs: '4-5号',
+          description: '遠投に耐える太めのライン'
+        },
+        rig: {
+          name: '投げ釣り仕掛け',
+          specs: '天秤+針',
+          description: '底を狙う専用仕掛け'
+        }
+      },
+      additionalItems: [
+        'イソメ（エサ）',
+        'ゴカイ（エサ）',
+        '天秤各種',
+        'オモリ（15-30号）',
+        'エサ箱'
+      ],
+      pros: [
+        '砂浜から手軽に楽しめる',
+        '美味しい魚が釣れる',
+        '開放感のある釣り'
+      ],
+      tips: [
+        '遠投のフォームを練習',
+        'エサは小さめに付ける',
+        '砂地のポイントを狙う'
+      ]
+    },
+    {
+      id: 'lure-fishing-set',
+      name: 'ルアー釣りセット',
+      difficulty: 'advanced',
+      targetFish: ['suzuki', 'mebaru'],
+      price: '15,000-30,000円',
+      components: {
+        rod: {
+          name: 'シーバスロッド',
+          specs: '2.7m-3.0m ML',
+          description: 'ルアーの操作性に優れた専用竿'
+        },
+        reel: {
+          name: 'スピニングリール',
+          specs: '3000-4000番',
+          description: '巻き感度の良い高性能リール'
+        },
+        line: {
+          name: 'PEライン',
+          specs: '1.0-1.5号',
+          description: '感度と強度を両立'
+        },
+        rig: {
+          name: 'ルアー各種',
+          specs: 'ミノー・バイブレーション等',
+          description: '状況に応じてルアーを選択'
+        }
+      },
+      additionalItems: [
+        'ルアーケース',
+        'プライヤー',
+        'ランディングネット',
+        'ヘッドライト',
+        'タックルバッグ'
+      ],
+      pros: [
+        'スポーツフィッシングが楽しめる',
+        '大型魚との駆け引きが醍醐味',
+        'エサが不要で手軽'
+      ],
+      tips: [
+        'ルアーのアクションを覚える',
+        'ストラクチャーを狙う',
+        '時間帯によってルアーを変える'
+      ]
     }
   ],
   
@@ -127,7 +273,7 @@ export const tackleGuide = {
     {
       id: 'isomeshi',
       name: 'イソメ（ゴカイ）',
-      targetFish: ['tai', 'suzuki'],
+      targetFish: ['tai', 'suzuki', 'kisu'],
       season: 'all',
       form: '生きエサ',
       price: '300-600円',
@@ -136,6 +282,20 @@ export const tackleGuide = {
         '生きの良いものを選ぶ',
         '針に通し刺しにする',
         '余ったら冷蔵庫で保管'
+      ]
+    },
+    {
+      id: 'ebi',
+      name: 'エビ',
+      targetFish: ['tai', 'kasago'],
+      season: 'all',
+      form: '冷凍・生き',
+      price: '500-800円',
+      usage: '付けエサ',
+      tips: [
+        '尻尾から頭に向かって刺す',
+        '生きエビは活かしバケツで保管',
+        '殻を剥いて使うことも'
       ]
     }
   ],
@@ -164,12 +324,24 @@ export const tackleGuide = {
       importance: 'conditional',
       description: '早朝・夕方・夜釣りで必要。両手が使えるヘッドライトが便利。',
       price: '1,500-5,000円'
+    },
+    {
+      name: 'プライヤー・ハサミ',
+      importance: 'recommended',
+      description: '針外しやライン切断に必要。安全な釣りには必須。',
+      price: '1,000-3,000円'
+    },
+    {
+      name: 'タオル・ウェットティッシュ',
+      importance: 'recommended',
+      description: '手や道具の清掃、魚の血液処理に必要。',
+      price: '500-1,000円'
     }
   ]
 };
 
 // 価格帯別おすすめ
-export const budgetRecommendations = {
+export const budgetRecommendations: Record<'low' | 'medium' | 'high', BudgetRecommendation> = {
   low: {
     budget: '5,000円以下',
     description: '最低限の道具で始める',
@@ -177,7 +349,8 @@ export const budgetRecommendations = {
       'コンパクト竿セット（竿・リール・ライン込み）',
       'サビキ仕掛け数セット',
       'アミエビ',
-      '小型クーラーボックス'
+      '小型クーラーボックス',
+      'ライフジャケット（中古可）'
     ]
   },
   medium: {
@@ -189,7 +362,8 @@ export const budgetRecommendations = {
       '各種仕掛け',
       'エサ・撒き餌',
       'タックルボックス',
-      'ライフジャケット'
+      'ライフジャケット',
+      '基本的な安全装備'
     ]
   },
   high: {
@@ -201,7 +375,8 @@ export const budgetRecommendations = {
       '多様な仕掛け',
       'クーラーボックス（20L以上）',
       '安全装備一式',
-      '便利グッズ各種'
+      '便利グッズ各種',
+      'タックルバッグ'
     ]
   }
 };

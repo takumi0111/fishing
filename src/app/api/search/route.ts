@@ -1,6 +1,8 @@
-import { getFishingSpotRecommendations } from '@/lib/gemini';
+import { NextRequest, NextResponse } from 'next/server';
+import { searchFishingSpots } from '@/lib/gemini';
 
-export async function GET(request) {
+// GET リクエストの処理
+export async function GET(request: NextRequest): Promise<NextResponse> {
   try {
     const { searchParams } = new URL(request.url);
     const area = searchParams.get('area');
@@ -9,14 +11,18 @@ export async function GET(request) {
 
     // パラメータの検証
     if (!area && !fish && !startDate) {
-      return Response.json(
+      return NextResponse.json(
         { error: '検索条件を最低1つは指定してください' },
         { status: 400 }
       );
     }
 
     // Gemini APIから釣りスポット情報を取得
-    const recommendations = await getFishingSpotRecommendations(area, fish, startDate);
+    const recommendations = await searchFishingSpots(
+      area || '', 
+      fish || '', 
+      startDate || ''
+    );
 
     // 現在時刻を追加
     const currentTime = new Date().toLocaleString('ja-JP', {
@@ -25,13 +31,14 @@ export async function GET(request) {
       day: 'numeric',
       hour: '2-digit',
       minute: '2-digit',
-      second: '2-digit'
+      second: '2-digit',
+      timeZone: 'Asia/Tokyo'
     });
 
-    return Response.json({
+    return NextResponse.json({
       success: true,
       data: {
-        ...recommendations,
+        spots: recommendations,
         generatedAt: currentTime
       },
       searchParams: { area, fish, startDate }
@@ -40,23 +47,30 @@ export async function GET(request) {
   } catch (error) {
     console.error('Search API error:', error);
     
-    return Response.json(
+    const errorMessage = error instanceof Error ? error.message : '不明なエラーが発生しました';
+    
+    return NextResponse.json(
       { 
         error: '釣りスポット情報の取得に失敗しました',
-        details: error.message 
+        details: errorMessage 
       },
       { status: 500 }
     );
   }
 }
 
-export async function POST(request) {
+// POST リクエストの処理
+export async function POST(request: NextRequest): Promise<NextResponse> {
   try {
     const body = await request.json();
     const { area, fish, season } = body;
 
     // POSTでも同様の処理
-    const recommendations = await getFishingSpotRecommendations(area, fish, season);
+    const recommendations = await searchFishingSpots(
+      area || '', 
+      fish || '', 
+      season || ''
+    );
 
     // 現在時刻を追加
     const currentTime = new Date().toLocaleString('ja-JP', {
@@ -65,13 +79,14 @@ export async function POST(request) {
       day: 'numeric',
       hour: '2-digit',
       minute: '2-digit',
-      second: '2-digit'
+      second: '2-digit',
+      timeZone: 'Asia/Tokyo'
     });
 
-    return Response.json({
+    return NextResponse.json({
       success: true,
       data: {
-        ...recommendations,
+        spots: recommendations,
         generatedAt: currentTime
       },
       searchParams: { area, fish, season }
@@ -80,10 +95,12 @@ export async function POST(request) {
   } catch (error) {
     console.error('Search API POST error:', error);
     
-    return Response.json(
+    const errorMessage = error instanceof Error ? error.message : '不明なエラーが発生しました';
+    
+    return NextResponse.json(
       { 
         error: '釣りスポット情報の取得に失敗しました',
-        details: error.message 
+        details: errorMessage 
       },
       { status: 500 }
     );

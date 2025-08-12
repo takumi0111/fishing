@@ -1,0 +1,324 @@
+/* ホームページ用スタイル */
+
+/* 基本レイアウト */
+.page-container {
+  min-height: 100vh;
+  background: linear-gradient(to bottom right, #e0f2fe, #cffafe);
+}
+
+/* ヘッダー */
+.home-header {
+  background: linear-gradient(to right, #0284c7, #0891b2);
+  color: white;
+}
+
+.home-header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem;
+}
+
+.home-title {
+  font-size: 1.875rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.home-subtitle {
+  color: #bae6fd;
+  font-size: 1.125rem;
+  font-weight: 400;
+}
+
+/* メインコンテンツ */
+.home-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.home-welcome {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.home-welcome-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 1rem;
+}
+
+.home-welcome-description {
+  color: #475569;
+  max-width: 42rem;
+  margin: 0 auto;
+}
+
+/* 検索フォーム */
+.search-form-container {
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  max-width: 64rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.search-form-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #0f172a;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.search-form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .search-form-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.form-group {
+  display: block;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #1e293b;
+  margin-bottom: 0.5rem;
+}
+
+.form-select,
+.form-input {
+  width: 100%;
+  border: 1px solid #cbd5e1;
+  border-radius: 0.375rem;
+  padding: 0.5rem 0.75rem;
+  transition: all 0.2s;
+}
+
+.form-select:focus,
+.form-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #0284c7;
+  border-color: transparent;
+}
+
+.custom-fish-input {
+  margin-top: 0.5rem;
+}
+
+.search-button {
+  width: 100%;
+  background: #0284c7;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  transition: background-color 0.2s;
+  border: none;
+  cursor: pointer;
+}
+
+.search-button:hover {
+  background: #0369a1;
+}
+
+.search-button:disabled {
+  background: #38bdf8;
+  cursor: not-allowed;
+}
+
+/* 機能紹介カード */
+.feature-cards-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+  .feature-cards-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.feature-card {
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.feature-card-icon {
+  font-size: 2.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.feature-card-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #0f172a;
+  margin-bottom: 0.5rem;
+}
+
+.feature-card-description {
+  color: #475569;
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+}
+
+.feature-card-button {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  border-radius: 0.5rem;
+  transition: all 0.3s;
+  font-size: 0.875rem;
+  text-decoration: none;
+}
+
+.feature-card-button-fish {
+  background: linear-gradient(to right, #0284c7, #0891b2);
+  color: white;
+}
+
+.feature-card-button-fish:hover {
+  background: linear-gradient(to right, #0369a1, #0e7490);
+}
+
+.feature-card-button-safety {
+  background: linear-gradient(to right, #7c3aed, #8b5cf6);
+  color: white;
+}
+
+.feature-card-button-safety:hover {
+  background: linear-gradient(to right, #6d28d9, #7c3aed);
+}
+
+/* 初心者向け基本情報 */
+.beginner-info-container {
+  background: linear-gradient(to bottom right, #e0f2fe, #cffafe);
+  border-radius: 1rem;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  border: 1px solid #bae6fd;
+}
+
+.beginner-info-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #0f172a;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.beginner-info-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 1024px) {
+  .beginner-info-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.beginner-info-card {
+  background: white;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.beginner-info-card-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.beginner-info-card-icon {
+  font-size: 1.5rem;
+  margin-right: 0.75rem;
+}
+
+.beginner-info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.beginner-info-list-item {
+  display: flex;
+  align-items: flex-start;
+}
+
+.beginner-info-list-bullet {
+  margin-right: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+.beginner-info-list-bullet-blue {
+  color: #0284c7;
+}
+
+.beginner-info-list-bullet-green {
+  color: #0891b2;
+}
+
+.beginner-info-item-title {
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.beginner-info-item-description {
+  color: #475569;
+  display: block;
+  font-size: 0.875rem;
+}
+
+.beginner-info-item-safety {
+  font-weight: 600;
+  color: #7c3aed;
+}
+
+.beginner-info-item-safety-description {
+  color: #475569;
+  display: block;
+  font-size: 0.875rem;
+}
+
+.beginner-info-ai-description {
+  color: #1e293b;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.beginner-info-card-title-blue {
+  color: #0284c7;
+}
+
+.beginner-info-card-title-green {
+  color: #0891b2;
+}
+
+.beginner-info-card-title-purple {
+  color: #7c3aed;
+}

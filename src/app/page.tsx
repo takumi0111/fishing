@@ -1,15 +1,23 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
+import '@/styles/home.css';
 
-export default function Home() {
-  const [area, setArea] = useState('');
-  const [fish, setFish] = useState('');
-  const [customFish, setCustomFish] = useState('');
-  const [startDate, setStartDate] = useState('');
-  const [isSearching, setIsSearching] = useState(false);
+interface FormData {
+  area: string;
+  fish: string;
+  customFish: string;
+  startDate: string;
+}
+
+export default function Home(): React.JSX.Element {
+  const [area, setArea] = useState<string>('');
+  const [fish, setFish] = useState<string>('');
+  const [customFish, setCustomFish] = useState<string>('');
+  const [startDate, setStartDate] = useState<string>('');
+  const [isSearching, setIsSearching] = useState<boolean>(false);
 
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -22,7 +30,7 @@ export default function Home() {
     if (fishParam) setFish(fishParam);
   }, [searchParams]);
 
-  const handleSearch = async (e) => {
+  const handleSearch = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
     setIsSearching(true);
 
@@ -53,48 +61,56 @@ export default function Home() {
     }
   };
 
+  const handleFishChange = (e: React.ChangeEvent<HTMLSelectElement>): void => {
+    const value = e.target.value;
+    setFish(value);
+    if (value !== 'other') {
+      setCustomFish('');
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-cyan-100">
+    <div className="page-container">
       {/* ヘッダー */}
-      <header className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white">
-        <div className="container mx-auto px-4 py-6">
-          <h1 className="text-3xl font-bold text-center">
+      <header className="home-header">
+        <div className="home-header-container">
+          <h1 className="home-title">
             🎣 海釣りガイド　
-            <span className="text-blue-200 text-lg font-normal">初心者向け</span>
+            <span className="home-subtitle">初心者向け</span>
           </h1>
         </div>
       </header>
 
       {/* メインコンテンツ */}
-      <main className="container mx-auto px-4 py-8">
+      <main className="home-main">
         {/* ウェルカムメッセージ */}
-        <div className="text-center mb-12">
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">
+        <div className="home-welcome">
+          <h2 className="home-welcome-title">
             初心者でも安心！海釣りを始めよう
           </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <p className="home-welcome-description">
             あなたにピッタリの釣りスポットと道具をご提案します。
             安全で楽しい海釣り体験をサポートします。
           </p>
         </div>
 
         {/* 検索フォーム */}
-        <div className="bg-white rounded-lg shadow-md p-6 mb-8 max-w-4xl mx-auto">
-          <h3 className="text-xl font-semibold text-gray-800 mb-4 text-center">
+        <div className="search-form-container">
+          <h3 className="search-form-title">
             釣りスポットを探す
           </h3>
           
           <form onSubmit={handleSearch}>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+            <div className="search-form-grid">
               {/* エリア選択 */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+              <div className="form-group">
+                <label className="form-label">
                   エリア
                 </label>
                 <select 
                   value={area}
                   onChange={(e) => setArea(e.target.value)}
-                  className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="form-select"
                 >
                   <option value="">エリアを選択</option>
                   <optgroup label="北海道・東北">
@@ -143,19 +159,14 @@ export default function Home() {
               </div>
 
               {/* 釣りたい魚 */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+              <div className="form-group">
+                <label className="form-label">
                   釣りたい魚
                 </label>
                 <select 
                   value={fish}
-                  onChange={(e) => {
-                    setFish(e.target.value);
-                    if (e.target.value !== 'other') {
-                      setCustomFish('');
-                    }
-                  }}
-                  className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  onChange={handleFishChange}
+                  className="form-select"
                 >
                   <option value="">魚種を選択</option>
                   <option value="aji">アジ</option>
@@ -172,28 +183,28 @@ export default function Home() {
                 </select>
                 
                 {fish === 'other' && (
-                  <div className="mt-2">
+                  <div className="custom-fish-input">
                     <input
                       type="text"
                       value={customFish}
                       onChange={(e) => setCustomFish(e.target.value)}
                       placeholder="釣りたい魚種を入力してください（例：ブリ、タコ、カンパチなど）"
-                      className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="form-input"
                     />
                   </div>
                 )}
               </div>
 
               {/* 釣行予定日 */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+              <div className="form-group">
+                <label className="form-label">
                   釣行予定日
                 </label>
                 <input
                   type="date"
                   value={startDate}
                   onChange={(e) => setStartDate(e.target.value)}
-                  className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="form-input"
                 />
               </div>
             </div>
@@ -201,7 +212,7 @@ export default function Home() {
             <button 
               type="submit"
               disabled={isSearching}
-              className="w-full bg-blue-600 text-white py-3 px-6 rounded-md hover:bg-blue-700 disabled:bg-blue-400 transition-colors font-medium"
+              className="search-button"
             >
               {isSearching ? '検索中...' : '釣りスポットを検索'}
             </button>
@@ -209,38 +220,44 @@ export default function Home() {
         </div>
 
         {/* 機能紹介カード */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          <div className="bg-white rounded-lg shadow-md p-6 text-center">
-            <div className="text-4xl mb-3"></div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-2">天候・潮汐</h3>
-            <p className="text-gray-600 text-sm">
-              釣行に最適なコンディションをチェック
-            </p>
-          </div>
-
-          <div className="bg-white rounded-lg shadow-md p-6 text-center">
-            <div className="text-4xl mb-3">🐟</div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-2">魚の情報</h3>
-            <p className="text-gray-600 text-sm mb-4">
-              魚種別の特徴や釣り方を詳しく解説
+        <div className="feature-cards-grid">
+          <div className="feature-card">
+            <div className="feature-card-icon">🌊</div>
+            <h3 className="feature-card-title">釣り豆知識</h3>
+            <p className="feature-card-description">
+              天候・潮汐・釣り用語など初心者向けの基礎知識
             </p>
             <Link 
-              href="/fish-info"
-              className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-medium rounded-lg hover:from-green-600 hover:to-emerald-700 transition-all duration-300 text-sm"
+              href="/fishing-tips"
+              className="feature-card-button feature-card-button-tips"
             >
               詳しく見る
             </Link>
           </div>
 
-          <div className="bg-white rounded-lg shadow-md p-6 text-center">
-            <div className="text-4xl mb-3">🛡️</div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-2">安全ガイド</h3>
-            <p className="text-gray-600 text-sm mb-4">
+          <div className="feature-card">
+            <div className="feature-card-icon">🐟</div>
+            <h3 className="feature-card-title">魚の情報</h3>
+            <p className="feature-card-description">
+              魚種別の特徴や釣り方を詳しく解説
+            </p>
+            <Link 
+              href="/fish-info"
+              className="feature-card-button feature-card-button-fish"
+            >
+              詳しく見る
+            </Link>
+          </div>
+
+          <div className="feature-card">
+            <div className="feature-card-icon">🛡️</div>
+            <h3 className="feature-card-title">安全ガイド</h3>
+            <p className="feature-card-description">
               安全な釣りのためのルールとマナーをご紹介
             </p>
             <Link 
               href="/safety-guide"
-              className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-red-500 to-orange-600 text-white font-medium rounded-lg hover:from-red-600 hover:to-orange-700 transition-all duration-300 text-sm"
+              className="feature-card-button feature-card-button-safety"
             >
               詳しく見る
             </Link>
@@ -248,79 +265,79 @@ export default function Home() {
         </div>
 
         {/* 初心者のための基本情報 */}
-        <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl p-8 mb-8 border border-blue-100">
-          <h2 className="text-2xl font-bold text-gray-800 text-center mb-8">
+        <div className="beginner-info-container">
+          <h2 className="beginner-info-title">
             初心者のための基本情報
           </h2>
           
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="beginner-info-grid">
             {/* 今の季節におすすめ */}
-            <div className="bg-white rounded-xl p-6 shadow-md">
-              <h3 className="text-lg font-bold text-blue-800 mb-4 flex items-center">
-                <span className="text-2xl mr-3">🌊</span>
+            <div className="beginner-info-card">
+              <h3 className="beginner-info-card-title beginner-info-card-title-blue">
+                <span className="beginner-info-card-icon">🌊</span>
                 今の季節におすすめ
               </h3>
-              <ul className="space-y-3">
-                <li className="flex items-start">
-                  <span className="text-blue-500 mr-3 mt-1">•</span>
+              <ul className="beginner-info-list">
+                <li className="beginner-info-list-item">
+                  <span className="beginner-info-list-bullet beginner-info-list-bullet-blue">•</span>
                   <div>
-                    <span className="font-semibold text-gray-800">アジ</span>
-                    <span className="text-gray-600 block text-sm">サビキ釣りで初心者でも簡単</span>
+                    <span className="beginner-info-item-title">アジ</span>
+                    <span className="beginner-info-item-description">サビキ釣りで初心者でも簡単</span>
                   </div>
                 </li>
-                <li className="flex items-start">
-                  <span className="text-blue-500 mr-3 mt-1">•</span>
+                <li className="beginner-info-list-item">
+                  <span className="beginner-info-list-bullet beginner-info-list-bullet-blue">•</span>
                   <div>
-                    <span className="font-semibold text-gray-800">イワシ</span>
-                    <span className="text-gray-600 block text-sm">群れで釣れるので数釣りが楽しめる</span>
+                    <span className="beginner-info-item-title">イワシ</span>
+                    <span className="beginner-info-item-description">群れで釣れるので数釣りが楽しめる</span>
                   </div>
                 </li>
-                <li className="flex items-start">
-                  <span className="text-blue-500 mr-3 mt-1">•</span>
+                <li className="beginner-info-list-item">
+                  <span className="beginner-info-list-bullet beginner-info-list-bullet-blue">•</span>
                   <div>
-                    <span className="font-semibold text-gray-800">サバ</span>
-                    <span className="text-gray-600 block text-sm">引きが強く釣りごたえ抜群</span>
+                    <span className="beginner-info-item-title">サバ</span>
+                    <span className="beginner-info-item-description">引きが強く釣りごたえ抜群</span>
                   </div>
                 </li>
               </ul>
             </div>
 
             {/* 基本の持ち物 */}
-            <div className="bg-white rounded-xl p-6 shadow-md">
-              <h3 className="text-lg font-bold text-green-800 mb-4 flex items-center">
-                <span className="text-2xl mr-3">🎒</span>
+            <div className="beginner-info-card">
+              <h3 className="beginner-info-card-title beginner-info-card-title-green">
+                <span className="beginner-info-card-icon">🎒</span>
                 基本の持ち物
               </h3>
-              <ul className="space-y-3">
-                <li className="flex items-start">
-                  <span className="text-green-500 mr-3 mt-1">•</span>
-                  <span className="text-gray-700">
-                    <span className="font-semibold text-red-600">ライフジャケット</span>
-                    <span className="text-gray-600 block text-sm">（安全のため必須）</span>
+              <ul className="beginner-info-list">
+                <li className="beginner-info-list-item">
+                  <span className="beginner-info-list-bullet beginner-info-list-bullet-green">•</span>
+                  <span>
+                    <span className="beginner-info-item-safety">ライフジャケット</span>
+                    <span className="beginner-info-item-safety-description">（安全のため必須）</span>
                   </span>
                 </li>
-                <li className="flex items-start">
-                  <span className="text-green-500 mr-3 mt-1">•</span>
-                  <span className="text-gray-700">竿・リール・仕掛け</span>
+                <li className="beginner-info-list-item">
+                  <span className="beginner-info-list-bullet beginner-info-list-bullet-green">•</span>
+                  <span className="beginner-info-item-title">竿・リール・仕掛け</span>
                 </li>
-                <li className="flex items-start">
-                  <span className="text-green-500 mr-3 mt-1">•</span>
-                  <span className="text-gray-700">クーラーボックス・氷</span>
+                <li className="beginner-info-list-item">
+                  <span className="beginner-info-list-bullet beginner-info-list-bullet-green">•</span>
+                  <span className="beginner-info-item-title">クーラーボックス・氷</span>
                 </li>
-                <li className="flex items-start">
-                  <span className="text-green-500 mr-3 mt-1">•</span>
-                  <span className="text-gray-700">タオル・帽子・日焼け止め</span>
+                <li className="beginner-info-list-item">
+                  <span className="beginner-info-list-bullet beginner-info-list-bullet-green">•</span>
+                  <span className="beginner-info-item-title">タオル・帽子・日焼け止め</span>
                 </li>
               </ul>
             </div>
 
             {/* AI による情報提供 */}
-            <div className="bg-white rounded-xl p-6 shadow-md">
-              <h3 className="text-lg font-bold text-purple-800 mb-4 flex items-center">
-                <span className="text-2xl mr-3">🤖</span>
+            <div className="beginner-info-card">
+              <h3 className="beginner-info-card-title beginner-info-card-title-purple">
+                <span className="beginner-info-card-icon">🤖</span>
                 AI による情報提供
               </h3>
-              <p className="text-gray-700 text-sm leading-relaxed">
+              <p className="beginner-info-ai-description">
                 検索結果はGemini AIが各種釣り情報サイト、自治体の観光情報、釣り場ガイドなどを参考に生成します。
                 情報源と最終更新年も併せて表示し、透明性を確保しています。
               </p>
