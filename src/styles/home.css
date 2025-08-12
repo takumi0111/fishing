@@ -155,30 +155,58 @@
   }
 }
 
-.feature-card {
-  background: white;
+.feature-card-tips {
+  background: url('/tips.png') center/cover no-repeat;
   border-radius: 0.5rem;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  padding: 1.5rem;
+  padding: 3rem;
   text-align: center;
+  position: relative;
 }
 
-.feature-card-icon {
-  font-size: 2.25rem;
-  margin-bottom: 0.75rem;
+.feature-card-tips::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 0.5rem;
+}
+
+.feature-card-fish {
+  background: url('/fish.png') center/cover no-repeat;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  padding: 3rem;
+  text-align: center;
+}
+.feature-card-safety {
+  background: url('/safety.png') center/cover no-repeat;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  padding: 3rem;
+  text-align: center;
 }
 
 .feature-card-title {
   font-size: 1.125rem;
   font-weight: 600;
-  color: #0f172a;
+  color: #fff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
   margin-bottom: 0.5rem;
+  position: relative;
+  z-index: 1;
 }
 
 .feature-card-description {
-  color: #475569;
+  color: #fff;
   font-size: 0.875rem;
   margin-bottom: 1rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  position: relative;
+  z-index: 1;
 }
 
 .feature-card-button {
@@ -186,10 +214,21 @@
   align-items: center;
   padding: 0.5rem 1rem;
   font-weight: 500;
+  position: relative;
+  z-index: 1;
   border-radius: 0.5rem;
   transition: all 0.3s;
   font-size: 0.875rem;
   text-decoration: none;
+}
+
+.feature-card-button-tips {
+  background: linear-gradient(to right, #0284c7, #0891b2);
+  color: white;
+}
+
+.feature-card-button-tips:hover {
+  background: linear-gradient(to right, #0369a1, #0e7490);
 }
 
 .feature-card-button-fish {
@@ -202,12 +241,12 @@
 }
 
 .feature-card-button-safety {
-  background: linear-gradient(to right, #7c3aed, #8b5cf6);
+  background: linear-gradient(to right, #0284c7, #0891b2);
   color: white;
 }
 
 .feature-card-button-safety:hover {
-  background: linear-gradient(to right, #6d28d9, #7c3aed);
+  background: linear-gradient(to right, #0369a1, #0e7490);
 }
 
 /* 初心者向け基本情報 */
@@ -252,11 +291,6 @@
   margin-bottom: 1rem;
   display: flex;
   align-items: center;
-}
-
-.beginner-info-card-icon {
-  font-size: 1.5rem;
-  margin-right: 0.75rem;
 }
 
 .beginner-info-list {
@@ -319,6 +353,14 @@
   color: #0891b2;
 }
 
+.beginner-info-card-title-orange {
+  color: #ea580c;
+}
+
 .beginner-info-card-title-purple {
   color: #7c3aed;
+}
+
+.beginner-info-list-bullet-orange {
+  color: #ea580c;
 }

@@ -4,10 +4,13 @@ import { searchFishingSpots } from '@/lib/gemini';
 // GET リクエストの処理
 export async function GET(request: NextRequest): Promise<NextResponse> {
   try {
+    console.log('Search API called');
     const { searchParams } = new URL(request.url);
     const area = searchParams.get('area');
     const fish = searchParams.get('fish');
     const startDate = searchParams.get('startDate');
+
+    console.log('Search params:', { area, fish, startDate });
 
     // パラメータの検証
     if (!area && !fish && !startDate) {
@@ -18,11 +21,14 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
     }
 
     // Gemini APIから釣りスポット情報を取得
+    console.log('Calling searchFishingSpots...');
     const recommendations = await searchFishingSpots(
       area || '', 
       fish || '', 
       startDate || ''
     );
+
+    console.log('searchFishingSpots completed:', recommendations);
 
     // 現在時刻を追加
     const currentTime = new Date().toLocaleString('ja-JP', {

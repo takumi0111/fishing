@@ -221,8 +221,7 @@ export default function Home(): React.JSX.Element {
 
         {/* 機能紹介カード */}
         <div className="feature-cards-grid">
-          <div className="feature-card">
-            <div className="feature-card-icon">🌊</div>
+          <div className="feature-card-tips">
             <h3 className="feature-card-title">釣り豆知識</h3>
             <p className="feature-card-description">
               天候・潮汐・釣り用語など初心者向けの基礎知識
@@ -235,8 +234,7 @@ export default function Home(): React.JSX.Element {
             </Link>
           </div>
 
-          <div className="feature-card">
-            <div className="feature-card-icon">🐟</div>
+          <div className="feature-card-fish">
             <h3 className="feature-card-title">魚の情報</h3>
             <p className="feature-card-description">
               魚種別の特徴や釣り方を詳しく解説
@@ -249,8 +247,7 @@ export default function Home(): React.JSX.Element {
             </Link>
           </div>
 
-          <div className="feature-card">
-            <div className="feature-card-icon">🛡️</div>
+          <div className="feature-card-safety">
             <h3 className="feature-card-title">安全ガイド</h3>
             <p className="feature-card-description">
               安全な釣りのためのルールとマナーをご紹介
@@ -274,7 +271,6 @@ export default function Home(): React.JSX.Element {
             {/* 今の季節におすすめ */}
             <div className="beginner-info-card">
               <h3 className="beginner-info-card-title beginner-info-card-title-blue">
-                <span className="beginner-info-card-icon">🌊</span>
                 今の季節におすすめ
               </h3>
               <ul className="beginner-info-list">
@@ -305,7 +301,6 @@ export default function Home(): React.JSX.Element {
             {/* 基本の持ち物 */}
             <div className="beginner-info-card">
               <h3 className="beginner-info-card-title beginner-info-card-title-green">
-                <span className="beginner-info-card-icon">🎒</span>
                 基本の持ち物
               </h3>
               <ul className="beginner-info-list">
@@ -331,16 +326,29 @@ export default function Home(): React.JSX.Element {
               </ul>
             </div>
 
-            {/* AI による情報提供 */}
+            {/* 釣りのマナー */}
             <div className="beginner-info-card">
-              <h3 className="beginner-info-card-title beginner-info-card-title-purple">
-                <span className="beginner-info-card-icon">🤖</span>
-                AI による情報提供
+              <h3 className="beginner-info-card-title beginner-info-card-title-orange">
+                釣りのマナー
               </h3>
-              <p className="beginner-info-ai-description">
-                検索結果はGemini AIが各種釣り情報サイト、自治体の観光情報、釣り場ガイドなどを参考に生成します。
-                情報源と最終更新年も併せて表示し、透明性を確保しています。
-              </p>
+              <ul className="beginner-info-list">
+                <li className="beginner-info-list-item">
+                  <span className="beginner-info-list-bullet beginner-info-list-bullet-orange">•</span>
+                  <span className="beginner-info-item-title">ゴミは必ず持ち帰る</span>
+                </li>
+                <li className="beginner-info-list-item">
+                  <span className="beginner-info-list-bullet beginner-info-list-bullet-orange">•</span>
+                  <span className="beginner-info-item-title">釣り場の整理整頓</span>
+                </li>
+                <li className="beginner-info-list-item">
+                  <span className="beginner-info-list-bullet beginner-info-list-bullet-orange">•</span>
+                  <span className="beginner-info-item-title">他の釣り人への配慮</span>
+                </li>
+                <li className="beginner-info-list-item">
+                  <span className="beginner-info-list-bullet beginner-info-list-bullet-orange">•</span>
+                  <span className="beginner-info-item-title">禁漁期間・サイズ制限を守る</span>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
