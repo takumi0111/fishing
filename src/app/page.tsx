@@ -352,6 +352,15 @@ export default function Home(): React.JSX.Element {
             </div>
           </div>
         </div>
+
+        {/* AI生成についての説明 */}
+        <div className="mt-8 text-center text-sm text-gray-500 border-t pt-4">
+          <p>
+            🤖 このサイトの釣りスポット情報は Gemini AI が各種釣り情報サイト、自治体の観光情報、釣り場ガイドなどを参考に生成しています。
+            <br />
+            情報源と最終更新年も併せて表示し、透明性を確保しています。実際の釣行前には最新情報をご確認ください。
+          </p>
+        </div>
       </main>
     </div>
   );

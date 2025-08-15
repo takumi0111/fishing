@@ -26,7 +26,7 @@ export default function FishInfo(): React.JSX.Element {
   const [selectedSeason, setSelectedSeason] = useState<string>('all');
   const [selectedDifficulty, setSelectedDifficulty] = useState<string>('all');
 
-  // 魚の情報データ（シマノサイト風）
+  // 魚の情報データ
   const fishData: FishData[] = [
     {
       id: 'aji',
