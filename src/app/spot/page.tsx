@@ -64,36 +64,36 @@ export default function SpotDetail(): React.JSX.Element {
   const spotName = searchParams.get('spotName');
   const location = searchParams.get('location');
 
-  const fetchSpotDetail = useCallback(async (): Promise<void> => {
-    try {
-      setLoading(true);
-      setError(null);
-      
-      const params = new URLSearchParams();
-      params.append('spotName', spotName!);
-      if (location) params.append('location', location);
-      
-      const response = await fetch(`/api/spot-detail?${params}`);
-      const data: SpotDetailResponse = await response.json();
-      
-      if (!response.ok) {
-        throw new Error(data.error || 'スポット詳細の取得に失敗しました');
-      }
-      
-      setSpotData(data.data);
-    } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : '不明なエラーが発生しました';
-      setError(errorMessage);
-    } finally {
-      setLoading(false);
-    }
-  }, [spotName, location]);
-
   useEffect(() => {
-    if (spotName) {
-      fetchSpotDetail();
-    }
-  }, [spotName, fetchSpotDetail]);
+    if (!spotName) return;
+
+    const fetchSpotDetail = async (): Promise<void> => {
+      try {
+        setLoading(true);
+        setError(null);
+        
+        const params = new URLSearchParams();
+        params.append('spotName', spotName);
+        if (location) params.append('location', location);
+        
+        const response = await fetch(`/api/spot-detail?${params}`);
+        const data: SpotDetailResponse = await response.json();
+        
+        if (!response.ok) {
+          throw new Error(data.error || 'スポット詳細の取得に失敗しました');
+        }
+        
+        setSpotData(data.data);
+      } catch (err) {
+        const errorMessage = err instanceof Error ? err.message : '不明なエラーが発生しました';
+        setError(errorMessage);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchSpotDetail();
+  }, [spotName, location]);
 
   const handleQuestionSubmit = async (e: React.FormEvent): Promise<void> => {
     e.preventDefault();
@@ -299,9 +299,9 @@ export default function SpotDetail(): React.JSX.Element {
                   </div>
                 )}
 
-                {/* 難易度 */}
+                {/* 人気度 */}
                 <div>
-                  <h4 className="font-semibold text-gray-700 mb-2">📊 難易度</h4>
+                  <h4 className="font-semibold text-gray-700 mb-2">⭐ 人気度</h4>
                   <div className="flex items-center">
                     <div className="flex">
                       {[1, 2, 3, 4, 5].map((star) => (
@@ -309,11 +309,11 @@ export default function SpotDetail(): React.JSX.Element {
                           key={star} 
                           className={`text-xl ${
                             star <= spotData.detailedInfo.difficulty 
-                              ? 'text-yellow-400' 
+                              ? 'text-red-500' 
                               : 'text-gray-300'
                           }`}
                         >
-                          ★
+                          ❤️
                         </span>
                       ))}
                     </div>

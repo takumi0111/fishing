@@ -245,8 +245,8 @@ export default function SearchResults(): React.JSX.Element {
                       <p className="text-gray-600 mb-2">{spot.location}</p>
                       <div className="flex items-center gap-4 text-sm">
                         {spot.difficulty && (
-                          <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded">
-                            難易度: {spot.difficulty}/5
+                          <span className="bg-red-100 text-red-800 px-2 py-1 rounded flex items-center gap-1">
+                            ❤️ 人気度: {spot.difficulty}/5
                           </span>
                         )}
                         {spot.targetFish && (
@@ -303,15 +303,6 @@ export default function SearchResults(): React.JSX.Element {
                 </div>
               ))}
             </div>
-
-            {/* 生成情報 */}
-            {results.data && (
-              <div className="mt-8 max-w-4xl mx-auto">
-                <div className="bg-gray-50 rounded-lg p-4 text-center text-xs text-gray-500">
-                  <span className="font-semibold">情報生成日時:</span> {results.data.generatedAt}
-                </div>
-              </div>
-            )}
           </>
         ) : (
           <div className="max-w-2xl mx-auto text-center">
@@ -326,6 +317,20 @@ export default function SearchResults(): React.JSX.Element {
                 新しい検索をする
               </Link>
             </div>
+          </div>
+        )}
+
+        {/* AI生成についての説明 */}
+        {results && (
+          <div className="mt-8 text-center text-sm text-gray-500 border-t pt-4">
+            <p>
+              🤖 この検索結果は Gemini AI が生成した情報です。各種釣り情報サイト、自治体の観光情報、釣り場ガイドなどを参考に作成されています。
+              <br />
+              実際の釣行前には最新の情報や安全情報をご確認ください。天候や潮汐、釣り場の状況は変化する可能性があります。
+            </p>
+            <p className="mt-2 text-xs text-gray-400">
+              生成日時: {results.data.generatedAt}
+            </p>
           </div>
         )}
       </main>
