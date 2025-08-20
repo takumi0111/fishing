@@ -17,6 +17,7 @@ export interface FishSpecies {
   averageSize: string;
   description: string;
   tips: string[];
+  image?: string; // 魚の画像ファイル名（オプショナル）
 }
 
 export type SeasonKey = 'spring' | 'summer' | 'autumn' | 'winter';
@@ -77,7 +78,8 @@ export const fishSpecies: FishSpecies[] = [
       '引きが強いのでドラグ調整に注意',
       '群れで行動するため、ポイントを見つけることが重要',
       '新鮮なうちに血抜きをすると美味しい'
-    ]
+    ],
+    image: 'saba.png'
   },
   {
     id: 'iwashi',
@@ -204,6 +206,72 @@ export const fishSpecies: FishSpecies[] = [
       '遠投して広範囲を探る',
       'エサは小さめに付ける'
     ]
+  },
+  {
+    id: 'katuo',
+    name: 'カツオ',
+    season: ['spring', 'summer', 'autumn'],
+    difficulty: 'advanced',
+    bestTime: ['dawn', 'morning', 'evening'],
+    recommendedTackle: {
+      rod: 'カツオ竿 3.0m-3.6m',
+      reel: 'スピニングリール 4000-5000番',
+      line: 'PE 2-3号',
+      rig: 'カツオ仕掛け'
+    },
+    bait: ['イワシ', 'サンマ', 'ルアー'],
+    averageSize: '40-60cm',
+    description: '回遊魚の王様。引きが強く、釣りごたえ抜群。',
+    tips: [
+      '回遊のタイミングを狙う',
+      '強いタックルが必要',
+      '船釣りが主流だが堤防からも狙える'
+    ],
+    image: 'katuo.png'
+  },
+  {
+    id: 'inada',
+    name: 'イナダ（ブリの幼魚）',
+    season: ['summer', 'autumn'],
+    difficulty: 'intermediate',
+    bestTime: ['dawn', 'morning', 'evening'],
+    recommendedTackle: {
+      rod: 'ライトショアジギング 2.7m-3.0m',
+      reel: 'スピニングリール 3000-4000番',
+      line: 'PE 1.5-2号',
+      rig: 'メタルジグ'
+    },
+    bait: ['ルアー（メタルジグ、ミノー）'],
+    averageSize: '30-40cm',
+    description: 'ブリの幼魚。青物らしい強い引きが楽しめる。',
+    tips: [
+      'ナブラ（魚群）を見つける',
+      'メタルジグでスピーディーに誘う',
+      '回遊魚なので時合いが重要'
+    ],
+    image: 'inada.png'
+  },
+  {
+    id: 'warasa',
+    name: 'ワラサ（ブリの若魚）',
+    season: ['autumn', 'winter'],
+    difficulty: 'advanced',
+    bestTime: ['dawn', 'morning', 'evening'],
+    recommendedTackle: {
+      rod: 'ショアジギング 3.0m-3.6m',
+      reel: 'スピニングリール 4000-5000番',
+      line: 'PE 2-3号',
+      rig: 'ヘビーメタルジグ'
+    },
+    bait: ['ルアー（メタルジグ、大型ミノー）'],
+    averageSize: '60-80cm',
+    description: 'ブリの若魚で大型。非常に強い引きを楽しめる。',
+    tips: [
+      '大型のルアーを使用',
+      '強力なタックルが必要',
+      '潮通しの良いポイントを狙う'
+    ],
+    image: 'wrasa.png'
   }
 ];
 

@@ -17,6 +17,51 @@
   padding: 1.5rem 1rem;
 }
 
+.difficulty-beginner {
+  background-color: #dcfce7;
+  color: #166534;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.difficulty-intermediate {
+  background-color: #fef3c7;
+  color: #92400e;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.difficulty-advanced {
+  background-color: #fee2e2;
+  color: #991b1b;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.fish-title {
+  font-size: 1.875rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.fish-subtitle {
+  text-align: center;
+  color: #bae6fd;
+  margin-top: 0.5rem;
+}
+
+.fish-header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem;
+}
+
 .fish-title {
   font-size: 1.875rem;
   font-weight: 700;
@@ -121,8 +166,13 @@
 }
 
 .fish-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  transform: translateY(-8px);
+  box-shadow: 0 25px 35px -5px rgba(0, 0, 0, 0.15);
+}
+
+.fish-card:hover .fish-card-header-image {
+  background-size: 110%;
+  transition: background-size 0.3s ease;
 }
 
 .fish-card-header {
@@ -130,22 +180,80 @@
   color: white;
   padding: 1.5rem;
   text-align: center;
+  position: relative;
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fish-card-header-image {
+  min-height: 180px;
+}
+
+.fish-card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.3) 0%,
+    rgba(0, 0, 0, 0.1) 50%,
+    rgba(0, 0, 0, 0.4) 100%
+  );
+  border-radius: 1rem 1rem 0 0;
+}
+
+.fish-card-content {
+  position: relative;
+  z-index: 2;
+  text-shadow: 
+    2px 2px 4px rgba(0, 0, 0, 0.8),
+    1px 1px 2px rgba(0, 0, 0, 0.9);
 }
 
 .fish-card-icon {
   font-size: 3rem;
   margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 4rem;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.fish-image {
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.fish-image:hover {
+  transform: scale(1.05);
 }
 
 .fish-card-name {
   font-size: 1.5rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
+  color: white;
+  text-shadow: 
+    2px 2px 4px rgba(0, 0, 0, 0.9),
+    1px 1px 2px rgba(0, 0, 0, 1),
+    0px 0px 8px rgba(0, 0, 0, 0.5);
 }
 
 .fish-card-size {
   font-size: 0.875rem;
   opacity: 0.9;
+  color: #e0f2fe;
+  font-weight: 500;
+  text-shadow: 
+    2px 2px 4px rgba(0, 0, 0, 0.9),
+    1px 1px 2px rgba(0, 0, 0, 1);
 }
 
 .fish-card-body {
@@ -164,6 +272,38 @@
   font-weight: 600;
   color: #374151;
   margin-right: 0.5rem;
+}
+
+.difficulty-badge {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.difficulty-beginner {
+  background-color: #dcfce7;
+  color: #166534;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.difficulty-intermediate {
+  background-color: #fef3c7;
+  color: #92400e;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.difficulty-advanced {
+  background-color: #fee2e2;
+  color: #991b1b;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 500;
 }
 
 .difficulty-stars {
@@ -209,10 +349,47 @@
 }
 
 .fish-card-description {
+  color: #6b7280;
+  line-height: 1.6;
   font-size: 0.875rem;
-  color: #4b5563;
-  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+.fish-tips {
   margin-bottom: 1.5rem;
+  background: #f8fafc;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border-left: 4px solid #0284c7;
+}
+
+.fish-tips h4 {
+  color: #0284c7;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.fish-tips ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.fish-tips li {
+  color: #374151;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  padding: 0.25rem 0;
+  position: relative;
+  padding-left: 1rem;
+}
+
+.fish-tips li:before {
+  content: "💡";
+  position: absolute;
+  left: 0;
+  top: 0.25rem;
 }
 
 .fish-card-button {
